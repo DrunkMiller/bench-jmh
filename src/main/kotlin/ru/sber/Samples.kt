@@ -1,4 +1,6 @@
-package ru.sber.model
+package ru.sber
+
+import ru.sber.model.*
 
 val simpleModel get() = SimpleModel(12.34, 56, true)
 

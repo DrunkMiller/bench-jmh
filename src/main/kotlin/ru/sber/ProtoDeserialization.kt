@@ -1,13 +1,12 @@
 package ru.sber
 
-import kotlinx.serialization.*
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.decodeFromByteArray
+import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
-import kotlinx.serialization.protobuf.ProtoBuf.Default.decodeFromByteArray
 import org.openjdk.jmh.annotations.*
 import ru.sber.model.*
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeUnit.*
+import java.util.concurrent.TimeUnit.SECONDS
 
 @ExperimentalSerializationApi
 @State(Scope.Benchmark)
@@ -29,20 +28,20 @@ class ProtoDeserialization {
     private val nestedSerialized = ProtoBuf.encodeToByteArray(nestedModel)
 
     @Benchmark
-    fun jsonSimpleDeserialization(): String = ProtoBuf.decodeFromByteArray(simpleSerialized)
+    fun protoSimpleDeserialization(): SimpleModel = ProtoBuf.decodeFromByteArray(simpleSerialized)
 
     @Benchmark
-    fun jsonStringDeserialization(): String = ProtoBuf.decodeFromByteArray(stringSerialized)
+    fun protoStringDeserialization(): StringModel = ProtoBuf.decodeFromByteArray(stringSerialized)
 
     @Benchmark
-    fun jsonArrayDeserialization(): String = ProtoBuf.decodeFromByteArray(arraySerialized)
+    fun protoArrayDeserialization(): ArrayModel = ProtoBuf.decodeFromByteArray(arraySerialized)
 
     @Benchmark
-    fun jsonMapDeserialization(): String = ProtoBuf.decodeFromByteArray(mapSerialized)
+    fun protoMapDeserialization(): MapModel = ProtoBuf.decodeFromByteArray(mapSerialized)
 
     @Benchmark
-    fun jsonInheritDeserialization(): String = ProtoBuf.decodeFromByteArray(inheritSerialized)
+    fun protoInheritDeserialization(): InheritModel = ProtoBuf.decodeFromByteArray(inheritSerialized)
 
     @Benchmark
-    fun jsonNestedJDeserialization(): String = ProtoBuf.decodeFromByteArray(nestedSerialized)
+    fun protoNestedJDeserialization(): NestedModel = ProtoBuf.decodeFromByteArray(nestedSerialized)
 }

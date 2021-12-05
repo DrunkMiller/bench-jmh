@@ -2,14 +2,11 @@ package ru.sber
 
 
 import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.protobuf.ProtoBuf
 import org.openjdk.jmh.annotations.*
 import ru.sber.model.*
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeUnit.*
+import java.util.concurrent.TimeUnit.SECONDS
 
 @State(Scope.Benchmark)
 @Fork(1)
@@ -30,20 +27,20 @@ class JsonDeserialization {
     private val nestedSerialized = Json.encodeToString(nestedModel)
 
     @Benchmark
-    fun jsonSimpleDeserialization(): String = Json.decodeFromString(simpleSerialized)
+    fun jsonSimpleDeserialization(): SimpleModel = Json.decodeFromString(simpleSerialized)
 
     @Benchmark
-    fun jsonStringDeserialization(): String = Json.encodeToString(stringSerialized)
+    fun jsonStringDeserialization(): StringModel = Json.decodeFromString(stringSerialized)
 
     @Benchmark
-    fun jsonArrayDeserialization(): String = Json.encodeToString(arraySerialized)
+    fun jsonArrayDeserialization(): ArrayModel = Json.decodeFromString(arraySerialized)
 
     @Benchmark
-    fun jsonMapDeserialization(): String = Json.encodeToString(mapSerialized)
+    fun jsonMapDeserialization(): MapModel = Json.decodeFromString(mapSerialized)
 
     @Benchmark
-    fun jsonInheritDeserialization(): String = Json.encodeToString(inheritSerialized)
+    fun jsonInheritDeserialization(): InheritModel = Json.decodeFromString(inheritSerialized)
 
     @Benchmark
-    fun jsonNestedJDeserialization(): String = Json.encodeToString(nestedSerialized)
+    fun jsonNestedJDeserialization(): NestedModel = Json.decodeFromString(nestedSerialized)
 }
