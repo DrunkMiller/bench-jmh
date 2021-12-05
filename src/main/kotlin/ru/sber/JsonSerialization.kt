@@ -33,38 +33,3 @@ class JsonSerialization {
     @Benchmark
     fun jsonNestedJSerialization(): String = Json.encodeToString(nestedModel)
 }
-
-
-//
-//
-//@State(Scope.Benchmark)
-//fun protoSimpleSerialization(): ByteArray = ProtoBuf.encodeToByteArray(simpleModel)
-//
-//fun protoStringSerialization(): ByteArray = ProtoBuf.encodeToByteArray(stringModel)
-//
-//fun protoArraySerialization(): ByteArray = ProtoBuf.encodeToByteArray(arrayModel)
-//
-//fun protoMapSerialization(): ByteArray = ProtoBuf.encodeToByteArray(mapModel)
-//
-//fun protoInheritSerialization(): ByteArray = ProtoBuf.encodeToByteArray(inheritModel)
-//
-//fun protoNestedJSerialization(): ByteArray = ProtoBuf.encodeToByteArray(nestedModel)
-//
-//fun main() {
-//    println(jsonSimpleSerialization())
-//    println(jsonStringSerialization())
-//    println(jsonArraySerialization())
-//    println(jsonMapSerialization())
-//    println(jsonInheritSerialization())
-//    println(jsonNestedJSerialization())
-//
-//    println()
-//    println()
-//
-//    println(protoSimpleSerialization().toList())
-//    println(protoStringSerialization().toList())
-//    println(protoArraySerialization().toList())
-//    println(protoMapSerialization().toList())
-//    println(protoInheritSerialization().toList())
-//    println(protoNestedJSerialization().toList())
-//}
