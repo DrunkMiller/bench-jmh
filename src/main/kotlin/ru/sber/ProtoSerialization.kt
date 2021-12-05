@@ -1,5 +1,6 @@
 package ru.sber
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -9,28 +10,29 @@ import ru.sber.model.*
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeUnit.*
 
+@ExperimentalSerializationApi
 @State(Scope.Benchmark)
 @Fork(1)
 @Warmup(iterations = 0)
 @Measurement(iterations = 1, time = 1, timeUnit = SECONDS)
 class ProtoSerialization {
     @Benchmark
-    fun jsonSimpleSerialization(): String = Json.encodeToString(simpleModel)
+    fun protoSimpleSerialization(): ByteArray = ProtoBuf.encodeToByteArray(simpleModel)
 
     @Benchmark
-    fun jsonStringSerialization(): String = Json.encodeToString(stringModel)
+    fun protoStringSerialization(): ByteArray = ProtoBuf.encodeToByteArray(stringModel)
 
     @Benchmark
-    fun jsonArraySerialization(): String = Json.encodeToString(arrayModel)
+    fun protoArraySerialization(): ByteArray = ProtoBuf.encodeToByteArray(arrayModel)
 
     @Benchmark
-    fun jsonMapSerialization(): String = Json.encodeToString(mapModel)
+    fun protoMapSerialization(): ByteArray = ProtoBuf.encodeToByteArray(mapModel)
 
     @Benchmark
-    fun jsonInheritSerialization(): String = Json.encodeToString(inheritModel)
+    fun protoInheritSerialization(): ByteArray = ProtoBuf.encodeToByteArray(inheritModel)
 
     @Benchmark
-    fun jsonNestedJSerialization(): String = Json.encodeToString(nestedModel)
+    fun protoNestedJSerialization(): ByteArray = ProtoBuf.encodeToByteArray(nestedModel)
 }
 
 
