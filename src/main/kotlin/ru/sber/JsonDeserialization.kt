@@ -9,8 +9,8 @@ import ru.sber.model.*
 import java.util.concurrent.TimeUnit.SECONDS
 
 @State(Scope.Benchmark)
-@Fork(1)
-@Warmup(iterations = 0)
+@BenchmarkMode(Mode.Throughput)
+@Warmup(iterations = 1)
 @Measurement(iterations = 1, time = 1, timeUnit = SECONDS)
 class JsonDeserialization {
 
@@ -42,5 +42,5 @@ class JsonDeserialization {
     fun jsonInheritDeserialization(): InheritModel = Json.decodeFromString(inheritSerialized)
 
     @Benchmark
-    fun jsonNestedJDeserialization(): NestedModel = Json.decodeFromString(nestedSerialized)
+    fun jsonNestedDeserialization(): NestedModel = Json.decodeFromString(nestedSerialized)
 }

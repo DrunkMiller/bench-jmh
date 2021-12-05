@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit.SECONDS
 
 @ExperimentalSerializationApi
 @State(Scope.Benchmark)
-@Fork(1)
-@Warmup(iterations = 0)
+@BenchmarkMode(Mode.All)
+@Warmup(iterations = 1)
 @Measurement(iterations = 1, time = 1, timeUnit = SECONDS)
 class ProtoSerialization {
     @Benchmark
@@ -28,5 +28,5 @@ class ProtoSerialization {
     fun protoInheritSerialization() = ProtoBuf.encodeToByteArray(inheritModel)
 
     @Benchmark
-    fun protoNestedJSerialization() = ProtoBuf.encodeToByteArray(nestedModel)
+    fun protoNestedSerialization() = ProtoBuf.encodeToByteArray(nestedModel)
 }

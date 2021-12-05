@@ -7,8 +7,8 @@ import org.openjdk.jmh.annotations.*
 import java.util.concurrent.TimeUnit.SECONDS
 
 @State(Scope.Benchmark)
-@Fork(1)
-@Warmup(iterations = 0)
+@BenchmarkMode(Mode.Throughput)
+@Warmup(iterations = 1)
 @Measurement(iterations = 1, time = 1, timeUnit = SECONDS)
 class JsonSerialization {
     @Benchmark
@@ -27,5 +27,5 @@ class JsonSerialization {
     fun jsonInheritSerialization() = Json.encodeToString(inheritModel)
 
     @Benchmark
-    fun jsonNestedJSerialization() = Json.encodeToString(nestedModel)
+    fun jsonNestedSerialization() = Json.encodeToString(nestedModel)
 }

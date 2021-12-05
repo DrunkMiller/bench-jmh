@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit.SECONDS
 
 @ExperimentalSerializationApi
 @State(Scope.Benchmark)
-@Fork(1)
-@Warmup(iterations = 0)
+@BenchmarkMode(Mode.Throughput)
+@Warmup(iterations = 1)
 @Measurement(iterations = 1, time = 1, timeUnit = SECONDS)
 class ProtoDeserialization {
 
@@ -43,5 +43,5 @@ class ProtoDeserialization {
     fun protoInheritDeserialization(): InheritModel = ProtoBuf.decodeFromByteArray(inheritSerialized)
 
     @Benchmark
-    fun protoNestedJDeserialization(): NestedModel = ProtoBuf.decodeFromByteArray(nestedSerialized)
+    fun protoNestedDeserialization(): NestedModel = ProtoBuf.decodeFromByteArray(nestedSerialized)
 }
